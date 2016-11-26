@@ -327,7 +327,7 @@ module.exports = yeoman.Base.extend({
         } else {
             this.spawnCommand(taskRunner, ['wiredep']);
         }
-    }
+    },
 
     //    writing: function () {
     //        this.fs.copy(
@@ -336,9 +336,9 @@ module.exports = yeoman.Base.extend({
     //        );
     //    },
     //
-    //    install: function () {
-    //        this.installDependencies();
-    //    }
+    install: function () {
+        this.installDependencies();
+    }
 });
 
 
