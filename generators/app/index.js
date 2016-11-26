@@ -54,17 +54,6 @@ module.exports = yeoman.Base.extend({
         this.pkg = require('../../package.json');
         this.sourceRoot(path.join(__dirname, '../templates/common'));
 
-        //        var prompts = [{
-        //            type: 'confirm',
-        //            name: 'someAnswer',
-        //            message: 'Would you like to enable this option?',
-        //            default: true
-        //        }];
-        //
-        //        return this.prompt(prompts).then(function (props) {
-        //            // To access props later use this.props.someAnswer;
-        //            this.props = props;
-        //        }.bind(this));
     },
 
     initializing: function () {
@@ -337,7 +326,9 @@ module.exports = yeoman.Base.extend({
     //    },
     //
     install: function () {
-        this.installDependencies();
+        if (!this.options['skip-install']) {
+            this.installDependencies();
+        }
     }
 });
 
