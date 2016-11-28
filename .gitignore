@@ -1,2 +1,8 @@
-node_modules
-coverage
+node_modules/
+coverage/
+
+# Mac OSX
+.DS_Store
+
+# Temp di GEdit
+*.*~
