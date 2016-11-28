@@ -16,12 +16,13 @@ Then generate your new project:
 yo full-separated-angular-spring
 ```
 
-## Getting To Know Yeoman
+## Getting To The full separated generator
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+This generator is made to be used in an enviroment where you decide to keep perfectly separated the frontend from the backend.
+The project is newborn and is subject to extreme changes. By the way everything is published is always valuable to the user.
+By now the generator creates a spring-based java structure and an angularjs project both connected with maven. A parent pom is generated and two connected poms are linked to it.
+
+This readme will be updated soon. By now I am focusing on the code
 
 ## License
 
