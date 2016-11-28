@@ -82,7 +82,8 @@ SpringGenerator.prototype.askFor = function askFor() {
             choices: [
                 {
                     name: 'Web',
-                    value: 'web'
+                    value: 'web',
+                    checked: true
                 }, {
                     name: 'Jetty (Tomcat will be uninstalled)',
                     value: 'jetty'
@@ -439,12 +440,15 @@ SpringGenerator.prototype.askFor = function askFor() {
 };
 
 SpringGenerator.prototype.app = function app() {
-    this.destinationRoot(path.join(this.destinationRoot(), '../'));
+    if (this.destinationRoot().endsWith('-frontend')) {
+        this.destinationRoot(path.join(this.destinationRoot(), '../'));
+    }
     var rootFolder = this.options.appname + '-backend';
     var packageFolder = this.packageName.replace(/\./g, '/');
     var srcDir = rootFolder + '/src/main/java/' + packageFolder;
     var resourceDir = rootFolder + '/src/main/resources';
     mkdirp(srcDir);
+    mkdirp(srcDir + '/controller');
 
     /*if ('gradle' === this.buildTool[0]) {
         this.template('build.gradle', 'build.gradle');
@@ -456,6 +460,7 @@ SpringGenerator.prototype.app = function app() {
     //}
 
     this.template('Application.java', srcDir + '/Application.java');
+    this.template('BasicController.java', srcDir + '/controller/BasicController.java');
 
     if (this.useSpock) {
         var testDir = rootFolder + '/src/test/groovy/' + packageFolder;

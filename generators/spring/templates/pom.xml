@@ -22,7 +22,13 @@
         <java.version><%= javaVersion %></java.version>
     </properties>
 
-    <dependencies><% if (actuator) { %>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <% if (actuator) { %>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -280,6 +286,7 @@
     <% } %>
 
     <build>
+        <finalName><%=baseName%>-api</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
