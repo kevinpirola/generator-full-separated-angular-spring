@@ -2,7 +2,6 @@
 var fs = require('fs');
 var path = require('path');
 var util = require('util');
-var angularUtils = require('../../util.js');
 var wiredep = require('wiredep');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
@@ -44,7 +43,7 @@ module.exports = yeoman.Base.extend({
         this.scriptAppName = this.options.scriptAppName;
         this.appPath = this.options.appPath;
         this.appname = this.options.appname;
-        
+
         this.pkg = require('../../package.json');
         this.sourceRoot(path.join(__dirname, '../templates/common'));
 
