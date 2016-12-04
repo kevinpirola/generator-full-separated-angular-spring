@@ -534,6 +534,26 @@ module.exports = function (grunt) {
       }
     },
 
+    war: {
+                        target: {
+                            options: {
+                                war_dist_folder: '<%%= yeoman.dist %>',
+                                /* Folder where to generate the WAR. */
+                                war_name: '<%= appname %>',
+                                /* The name fo the WAR file (.war will be the extension) */
+                                webxml_display_name: '<%= appname %>'
+                            },
+                            files: [
+                                {
+                                    expand: true,
+                                    cwd: '<%%= yeoman.dist %>',
+                                    src: ['**'],
+                                    dest: ''
+            }
+          ]
+                        }
+                    },
+
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [<% if (coffee) { %>
@@ -618,7 +638,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+      'war'
   ]);
 
   grunt.registerTask('default', [
@@ -627,4 +648,5 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+    grunt.loadNpmTasks('grunt-war');
 };
