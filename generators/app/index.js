@@ -47,7 +47,7 @@ module.exports = yeoman.Base.extend({
             this.log(yosay(
                 'Welcome to the amazing ' + chalk.yellow('full separated\nangular spring') + ' generator!'
             ));
-            this.log(chalk.yellow('This generator is based on the official yeoman generator-angular and davetownsend\'s generator-spring.\n'));
+            this.log(chalk.yellow('This generator is based on the official yeoman generator-angular and davetownsend\'s generator-spring.\nBeta'));
         }
     },
 
