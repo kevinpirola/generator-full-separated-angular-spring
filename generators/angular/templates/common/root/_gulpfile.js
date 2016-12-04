@@ -3,6 +3,8 @@
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var war = require('gulp-war');
+var zip = require('gulp-zip');
 var openURL = require('open');
 var lazypipe = require('lazypipe');
 var rimraf = require('rimraf');
@@ -210,8 +212,18 @@ gulp.task('copy:fonts', function () {
     .pipe(gulp.dest(yeoman.dist + '/fonts'));
 });
 
+gulp.task('war', ['client:build'], function () {
+    gulp.src([yeoman.dist + '/**/*'])
+        .pipe(war({
+            welcome: 'index.html',
+            displayName: 'Grunt WAR',
+        }))
+        .pipe(zip('<%= appname %>.war'))
+        .pipe(gulp.dest(yeoman.dist));
+});
+
 gulp.task('build', ['clean:dist'], function () {
-  runSequence(['images', 'copy:extras', 'copy:fonts', 'client:build']);
+  runSequence(['images', 'copy:extras', 'copy:fonts', 'client:build', 'war']);
 });
 
 gulp.task('default', ['build']);
