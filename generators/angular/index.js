@@ -85,18 +85,18 @@ module.exports = yeoman.Base.extend({
 
         // ###############################################
     },
-    askForVersion: function() {
+    askForVersion: function () {
         var cb = this.async();
-        
+
         this.prompt([{
             type: 'string',
             name: 'ngVer',
             message: 'Which version of angular do you want to use?',
             default: '1.5.9'
-        }]).then(function(props){
+        }]).then((props) => {
             this.ngVer = props.ngVer;
             cb();
-        }.bind(this));
+        });
     },
     askForGulp: function () {
         var cb = this.async();
@@ -106,10 +106,10 @@ module.exports = yeoman.Base.extend({
             name: 'gulp',
             message: 'Would you like to use Gulp (experimental) instead of Grunt?',
             default: false
-        }]).then(function (props) {
+        }]).then((props) => {
             this.gulp = props.gulp;
             cb();
-        }.bind(this));
+        });
     },
     askForStyles: function () {
         var gulp = this.gulp;
@@ -131,12 +131,12 @@ module.exports = yeoman.Base.extend({
             when: function () {
                 return !gulp;
             }
-        }]).then(function (props) {
+        }]).then((props) => {
             this.sass = props.sass;
             this.compass = props.compass;
 
             cb();
-        }.bind(this));
+        });
     },
     askForBootstrap: function () {
         var compass = this.compass;
@@ -156,12 +156,12 @@ module.exports = yeoman.Base.extend({
             when: function (props) {
                 return !gulp && (props.bootstrap && compass);
             }
-        }]).then(function (props) {
+        }]).then((props) => {
             this.bootstrap = props.bootstrap;
             this.compassBootstrap = props.compassBootstrap;
 
             cb();
-        }.bind(this));
+        });
     },
     askForModules: function () {
         var cb = this.async();
@@ -207,7 +207,7 @@ module.exports = yeoman.Base.extend({
             ]
         }];
 
-        this.prompt(prompts).then(function (props) {
+        this.prompt(prompts).then((props) => {
             var hasMod = function (mod) {
                 return props.modules.indexOf(mod) !== -1;
             };
@@ -260,7 +260,7 @@ module.exports = yeoman.Base.extend({
             }
 
             cb();
-        }.bind(this));
+        });
     },
     readIndex: function () {
         this.engine = require('ejs').render;
@@ -327,8 +327,13 @@ module.exports = yeoman.Base.extend({
     //    },
     //
     install: function () {
+        var cwd = process.cwd();
         if (!this.options['skip-install']) {
-            this.installDependencies();
+            var fedir = process.cwd() + '/' + this.appname + '-frontend';
+            process.chdir(fedir);
+            this.installDependencies({
+                callback: () => { process.chdir(cwd)}
+            });
         }
     }
 });
