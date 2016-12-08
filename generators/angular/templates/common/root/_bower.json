@@ -1,4 +1,4 @@
-{<% var ngVer = "1.4.0" %>
+{
   "name": "<%= lodash.slugify(lodash.humanize(appname)) %>",
   "version": "0.0.0",
   "dependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "generator-full-separated-angular-spring",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A full separated project that features AngularJS as frontend framework and Spring as Java backend framework",
   "homepage": "",
   "author": {

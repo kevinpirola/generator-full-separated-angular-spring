@@ -85,6 +85,19 @@ module.exports = yeoman.Base.extend({
 
         // ###############################################
     },
+    askForVersion: function() {
+        var cb = this.async();
+        
+        this.prompt([{
+            type: 'string',
+            name: 'ngVer',
+            message: 'Which version of angular do you want to use?',
+            default: '1.5.9'
+        }]).then(function(props){
+            this.ngVer = props.ngVer;
+            cb();
+        }.bind(this));
+    },
     askForGulp: function () {
         var cb = this.async();
 
