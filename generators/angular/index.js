@@ -7,38 +7,11 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var lodash = require('underscore.string');
+var html = require("html-wiring");
 
 module.exports = yeoman.Base.extend({
     constructor: function (args, options) {
         yeoman.Base.apply(this, arguments);
-        /*this.argument('appname', {
-            type: String,
-            required: false
-        });
-        this.appname = this.appname || path.basename(process.cwd());
-        this.appname = lodash.camelize(lodash.slugify(lodash.humanize(this.appname)));
-        this.log(this.appname);
-
-        this.scriptAppName = this.appname + angularUtils.appName(this);
-
-        this.log(this.appname);
-        args = ['main'];
-
-        if (typeof this.env.options.appPath === 'undefined') {
-
-            this.env.options.appPath = this.options.appPath;
-
-            if (!this.env.options.appPath) {
-                try {
-                    this.env.options.appPath = require(path.join(process.cwd(), 'bower.json')).appPath;
-                } catch (e) {}
-            }
-            this.env.options.appPath = this.env.options.appPath || 'app';
-            this.options.appPath = this.env.options.appPath;
-        }
-
-        this.appPath = this.env.options.appPath;
-        this.log(this.appname);*/
 
         this.scriptAppName = this.options.scriptAppName;
         this.appPath = this.options.appPath;
@@ -276,7 +249,7 @@ module.exports = yeoman.Base.extend({
         );
     },
     appJs: function () {
-        this.indexFile = this.appendFiles({
+        this.indexFile = html.appendFiles({
             html: this.indexFile,
             fileType: 'js',
             optimizedPath: 'scripts/scripts.js',
@@ -319,13 +292,6 @@ module.exports = yeoman.Base.extend({
         }
     },
 
-    //    writing: function () {
-    //        this.fs.copy(
-    //            this.templatePath('dummyfile.txt'),
-    //            this.destinationPath('dummyfile.txt')
-    //        );
-    //    },
-    //
     install: function () {
         var cwd = process.cwd();
         if (!this.options['skip-install']) {
