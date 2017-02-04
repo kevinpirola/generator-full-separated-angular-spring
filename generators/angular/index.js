@@ -262,6 +262,7 @@ module.exports = yeoman.Base.extend({
         this.write(path.join(this.appPath, 'index.html'), this.indexFile);
     },
     packageFiles: function () {
+        var join = path.join;
         this.lodash = lodash;
         this.coffee = this.env.options.coffee;
         this.typescript = this.env.options.typescript;
@@ -277,6 +278,7 @@ module.exports = yeoman.Base.extend({
             this.template('root/_tsd.json', 'tsd.json');
         }
         this.template('root/README.md', 'README.md');
+        this.sourceRoot(join(__dirname, './templates/javascript/'));
     },
     _injectDependencies: function () {
         var taskRunner = this.gulp ? 'gulp' : 'grunt';
